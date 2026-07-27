@@ -25,20 +25,22 @@ cask "icarus" do
     Icarus is NOT notarized by Apple. Notarization requires a paid Developer ID
     this alpha does not have yet, so macOS cannot vouch for this app.
 
-    Homebrew quarantines downloads by default, so unless you passed
-    --no-quarantine, macOS will refuse to open Icarus. Either reinstall with:
+    Homebrew quarantines cask downloads, and a cask cannot waive that for you.
+    So macOS will refuse to open Icarus until you clear the flag yourself:
 
-        brew install --cask --no-quarantine alankritxghosh/icarus/icarus
+        xattr -dr com.apple.quarantine /Applications/Icarus.app
 
-    or clear the flag on what you just installed:
+    (Older guides say to pass --no-quarantine. Current Homebrew rejects it as an
+    invalid option, and setting HOMEBREW_CASK_OPTS=--no-quarantine was measured
+    to leave the app quarantined anyway. Clearing it afterwards is what actually
+    works -- verified, not copied from a README.)
 
-        xattr -dr com.apple.quarantine "$(brew --prefix)/../Applications/Icarus.app"
-
-    Be clear-eyed about what --no-quarantine does: it skips Gatekeeper's check
-    rather than passing it. macOS has not inspected this app either way. The
-    sha256 above is the one published on the homepage, so you can verify the
-    download matches what was published -- that detects a corrupted or altered
-    download, and is not a substitute for Apple's signature.
+    Be clear-eyed about what that command does: it removes the flag that makes
+    macOS check the app, rather than making the app pass a check. macOS has not
+    inspected this app either way. The sha256 above is the one published on the
+    homepage, so you can confirm the download matches what was published -- that
+    detects a corrupted or altered download, and is not a substitute for Apple's
+    signature.
 
     First run: sign in with GitHub, connect a repo, then press Cmd-Shift-I
     anywhere and ask a question.
