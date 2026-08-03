@@ -1,6 +1,6 @@
 cask "icarus" do
-  version "0.1.0"
-  sha256 "f056baf505ec624a9168cdac062f77a9cfb065e411797da1e626c09ab6846e27"
+  version "0.1.1"
+  sha256 "bd1fc0c2c9efa1a6757a17b9b1564e6b5a566977c27606f40572dcfe092ad6fc"
 
   url "https://icarus-website-kappa.vercel.app/Icarus.dmg"
   name "Icarus"
